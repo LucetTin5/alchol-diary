@@ -20,3 +20,24 @@ export const iconImageUrl = (alcholType: AlcholType) => {
       return "/icons/soju.png";
   }
 };
+
+export const alcholImageUrl = (alcholType: AlcholType) => {
+  switch (alcholType) {
+    case "소주":
+      return "/alchols/soju.png";
+    case "맥주":
+      return "/alchols/beer.png";
+    case "와인":
+      return "/alchols/wine.png";
+    case "샴페인":
+      return "/alchols/champagne.png";
+    case "막걸리":
+      return "/alchols/makgeolli.png";
+    case "전통주":
+      return "/alchols/national.png";
+    case "칵테일":
+      return "/alchols/cocktail.png";
+    default:
+      return "/alchols/soju.png";
+  }
+};
