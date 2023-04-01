@@ -18,7 +18,7 @@ interface StepOneProps {
 }
 
 export default function StepOne({ handleNext }: StepOneProps) {
-  const { register, setValue, watch, getValues } = useFormContext<DiaryItem>();
+  const { register, setValue, watch } = useFormContext<DiaryItem>();
   const alcholType = watch("alcholType");
   const withWhom = watch("withWhom");
   const where = watch("where");
@@ -111,6 +111,11 @@ export default function StepOne({ handleNext }: StepOneProps) {
           onClick={handleNext}
           width="sm"
           bgGradient="linear(to-r, grape.start, grape.end)"
+          color="#fff"
+          _hover={{
+            bgGradient: "linear(to-r, grape.start, grape.end)",
+            opacity: 0.8,
+          }}
         >
           다음
         </Button>

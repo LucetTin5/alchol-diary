@@ -1,3 +1,5 @@
+import { Alchols } from "@/lib/constants";
+import { iconImageUrl } from "@/lib/iconImage";
 import { DiaryItem } from "@/types/diary";
 import {
   FormControl,
@@ -51,21 +53,27 @@ export default function ButtonGroup({
         display="grid"
         gridTemplateColumns={gridOption}
       >
-        {options?.map((option) => (
-          <Button
-            key={option}
-            onClick={() => handleClick(option)}
-            colorScheme={value === option ? "purple" : "gray"}
-            variant="ghost"
-            size="sm"
-            m={5}
-            p={1}
-            flexDir="column"
-          >
-            <Image src="https://picsum.photos/50" alt="example" />
-            {option}
-          </Button>
-        ))}
+        {options?.map((option) => {
+          let imgSrc;
+          if (Alchols.includes(option)) {
+            imgSrc = iconImageUrl(option);
+          }
+          return (
+            <Button
+              key={option}
+              variant={imgSrc ? "ghost" : "solid"}
+              onClick={() => handleClick(option)}
+              colorScheme={value === option ? "grape" : "gray"}
+              size="sm"
+              m={5}
+              p={1}
+              flexDir="column"
+            >
+              {imgSrc ? <Image src={imgSrc} alt="example" /> : null}
+              {option}
+            </Button>
+          );
+        })}
       </Box>
       <Input value={value} {...register(name)} hidden />
     </FormControl>

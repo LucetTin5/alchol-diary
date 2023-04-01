@@ -8,6 +8,8 @@ import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { DiaryItem } from "@/types/diary";
 import { withAuth } from "@/lib/withAuth";
+import axiosInstance from "@/lib/axios";
+import { getFromStorage } from "@/lib/storage";
 
 function NewDiary() {
   const [step, setStep] = useState<1 | 2>(1);
@@ -25,8 +27,45 @@ function NewDiary() {
   const handleNext = () => {
     setStep(2);
   };
-  const onSubmit = (data: DiaryItem) => {
-    console.log(data);
+  const onSubmit = async (data: DiaryItem) => {
+    const {
+      alcholType,
+      amount,
+      amountType,
+      withWhom,
+      where,
+      why,
+      food,
+      thought,
+      uploadImages,
+    } = data;
+    const newDiaryResponse = await axiosInstance.post("/diary", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getFromStorage("token")}`,
+      },
+      body: JSON.stringify({
+        alcholType,
+        amount,
+        amountType,
+        withWhom,
+        where,
+        why,
+        food,
+        thought,
+      }),
+    });
+    console.log(newDiaryResponse);
+    if (uploadImages !== undefined) {
+      const uploadFormData = new FormData();
+      for (let i = 0; i < uploadImages.length; i++) {
+        uploadFormData.append("files", uploadImages[i]);
+      }
+      const uploadResponse = await axiosInstance.post("/upload", {
+        body: uploadFormData,
+      });
+      console.log(uploadResponse);
+    }
   };
   return (
     <>
@@ -43,8 +82,7 @@ function NewDiary() {
             value={step === 1 ? 50 : 100}
             borderRadius={50}
             size="sm"
-            colorScheme="purple"
-            bgColor="gray.200"
+            colorScheme="grape"
           />
         </Box>
         <FormProvider {...methods}>

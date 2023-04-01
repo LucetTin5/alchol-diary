@@ -90,8 +90,8 @@ export default function StepTwo() {
               ref={inputRef}
             />
             <Button
-              w={45}
-              h={45}
+              w={70}
+              h={70}
               border="1px solid"
               borderColor="gray.300"
               borderRadius="md"

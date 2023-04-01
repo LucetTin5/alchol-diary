@@ -1,3 +1,5 @@
+import axiosInstance from "@/lib/axios";
+import { getFromStorage } from "@/lib/storage";
 import {
   AlertDialog,
   AlertDialogContent,
@@ -18,7 +20,19 @@ interface DeleteModalProps {
 
 export default function DeleteModal({ isOpen, onClose }: DeleteModalProps) {
   const router = useRouter();
-  const deleteDiary = () => {};
+  const { diaryId } = router.query;
+  const deleteDiary = () => {
+    const url = `http://localhost:3001/diary/${diaryId}`;
+    axiosInstance
+      .delete(url, {
+        headers: {
+          Authorization: `Bearer ${getFromStorage("token")}`,
+        },
+      })
+      .then(() => {
+        router.push("/diary");
+      });
+  };
   const cancelRef = useRef(null);
   const cancelDelete = () => onClose();
   return (

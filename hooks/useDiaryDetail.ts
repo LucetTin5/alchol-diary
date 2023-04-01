@@ -1,5 +1,5 @@
 import axiosInstance from "@/lib/axios";
-import { getFromStorage } from "@/lib/windowChecker";
+import { getFromStorage } from "@/lib/storage";
 import { DiaryItem } from "@/types/diary";
 import { useQuery } from "@tanstack/react-query";
 

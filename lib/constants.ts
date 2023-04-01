@@ -8,7 +8,6 @@ export const Alchols: AlcholType[] = [
   "전통주",
   "칵테일",
   "막걸리",
-  "기타",
 ];
 
 export const withWhomArray = ["혼술", "지인", "애인", "가족", "직장동료"];
