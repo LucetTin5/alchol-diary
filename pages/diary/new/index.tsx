@@ -39,12 +39,9 @@ function NewDiary() {
       thought,
       uploadImages,
     } = data;
-    const newDiaryResponse = await axiosInstance.post("/diary", {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${getFromStorage("token")}`,
-      },
-      body: JSON.stringify({
+    const newDiaryResponse = await axiosInstance.post(
+      "/diary",
+      {
         alcholType,
         amount,
         amountType,
@@ -53,8 +50,13 @@ function NewDiary() {
         why,
         food,
         thought,
-      }),
-    });
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${getFromStorage("token")}`,
+        },
+      }
+    );
     console.log(newDiaryResponse);
     if (uploadImages !== undefined) {
       const uploadFormData = new FormData();
