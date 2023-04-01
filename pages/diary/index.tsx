@@ -59,8 +59,18 @@ function Diary() {
               </Flex>
             </MenuButton>
             <MenuList fontSize="xs" minW={0} width="max-content">
-              <MenuItem onClick={() => setOrder("asc")}>최신순</MenuItem>
-              <MenuItem onClick={() => setOrder("desc")}>오래된 순</MenuItem>
+              <MenuItem
+                onClick={() => setOrder("asc")}
+                _hover={{ color: "grape.start", fontWeight: "bold" }}
+              >
+                최신순
+              </MenuItem>
+              <MenuItem
+                onClick={() => setOrder("desc")}
+                _hover={{ color: "grape.start", fontWeight: "bold" }}
+              >
+                오래된 순
+              </MenuItem>
             </MenuList>
           </Menu>
         </Flex>
