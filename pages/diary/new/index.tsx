@@ -10,8 +10,10 @@ import { DiaryItem } from "@/types/diary";
 import { withAuth } from "@/lib/withAuth";
 import axiosInstance from "@/lib/axios";
 import { getFromStorage } from "@/lib/storage";
+import { useRouter } from "next/router";
 
 function NewDiary() {
+  const router = useRouter();
   const [step, setStep] = useState<1 | 2>(1);
   const methods = useForm<DiaryItem>({
     defaultValues: {
@@ -67,6 +69,9 @@ function NewDiary() {
         body: uploadFormData,
       });
       console.log(uploadResponse);
+    }
+    if (newDiaryResponse.status === 200) {
+      router.push("/diary");
     }
   };
   return (

@@ -20,6 +20,8 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { BiTrash } from "react-icons/bi";
 import useDiaryDetail from "@/hooks/useDiaryDetail";
+import { getBgColor } from "@/lib/bgColor";
+import { transformDate } from "@/lib/date";
 
 function DiaryDetail() {
   const router = useRouter();
@@ -34,8 +36,16 @@ function DiaryDetail() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container>
-        <Header />
+      <Container
+        backgroundColor={
+          data?.alcholType ? getBgColor(data?.alcholType) : "soju.base"
+        }
+      >
+        <Header
+          bgColor={
+            data?.alcholType ? getBgColor(data?.alcholType) : "soju.base"
+          }
+        />
         <VStack spacing={4}>
           {isLoading ? (
             <Spinner />
@@ -47,8 +57,11 @@ function DiaryDetail() {
                 m="0 auto"
                 align="center"
                 position="relative"
+                color="#fff"
               >
-                <Heading size="sm">{data?.date?.split(" ").join(".")}</Heading>
+                <Heading size="md">
+                  {data?.createdAt ? transformDate(data?.createdAt) : ""}
+                </Heading>
                 <IconButton
                   aria-label="delete"
                   position="absolute"
@@ -86,8 +99,10 @@ function DiaryDetail() {
                   </Flex>
                 </Flex>
               </Card>
-              <Box width="xs" m="0 auto">
-                <Text fontSize="sm">{data?.thought}</Text>
+              <Box width="xs" m="0 auto" px={3}>
+                <Text fontSize="sm" color="#fff">
+                  {data?.thought}
+                </Text>
               </Box>
               <Box>
                 <ImageSlider images={data?.images} />
