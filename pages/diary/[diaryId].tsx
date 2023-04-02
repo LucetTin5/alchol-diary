@@ -21,7 +21,7 @@ import { BiTrash } from "react-icons/bi";
 import useDiaryDetail from "@/hooks/useDiaryDetail";
 import { getBgColor } from "@/lib/bgColor";
 import { transformDate } from "@/lib/date";
-import { alcholImageUrl, iconImageUrl } from "@/lib/iconImage";
+import { iconImageUrl } from "@/lib/iconImage";
 
 function DiaryDetail() {
   const router = useRouter();

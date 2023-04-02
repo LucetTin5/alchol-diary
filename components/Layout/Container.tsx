@@ -7,7 +7,9 @@ export default function Container({
   backgroundColor?: string;
   children: React.ReactNode;
 }) {
-  const bgColor = useBreakpointValue({ base: "gray.100", md: backgroundColor });
+  const bgColor = useBreakpointValue({
+    base: backgroundColor ?? "grape.start",
+  });
   return (
     <>
       <Box
