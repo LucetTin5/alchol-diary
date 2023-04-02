@@ -15,5 +15,6 @@ export interface DiaryItem {
     id: number;
     url: string;
   }[];
+  createdAt: string;
   date: string;
 }
