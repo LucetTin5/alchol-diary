@@ -3,7 +3,7 @@ import { getFromStorage } from "@/lib/storage";
 import { DiaryItem } from "@/types/diary";
 import { useQuery } from "@tanstack/react-query";
 
-export default function useDiary(filter: "asc" | "desc" = "asc") {
+export default function useDiary(filter: "asc" | "desc") {
   const token = getFromStorage("token");
   const queryFn = (): Promise<DiaryItem[]> =>
     axiosInstance
