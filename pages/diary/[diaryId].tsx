@@ -3,7 +3,6 @@ import ImageSlider from "@/components/Diary/Slider";
 import Header from "@/components/Header/Header";
 import Container from "@/components/Layout/Container";
 import { withAuth } from "@/lib/withAuth";
-import { DiaryItem } from "@/types/diary";
 import {
   Box,
   Card,
@@ -22,12 +21,23 @@ import { BiTrash } from "react-icons/bi";
 import useDiaryDetail from "@/hooks/useDiaryDetail";
 import { getBgColor } from "@/lib/bgColor";
 import { transformDate } from "@/lib/date";
+import { alcholImageUrl, iconImageUrl } from "@/lib/iconImage";
 
 function DiaryDetail() {
   const router = useRouter();
   const { diaryId } = router.query;
   const { data, isLoading } = useDiaryDetail(Number(diaryId));
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const testImages = [
+    {
+      id: 1,
+      url: `https://picsum.photos/300/300`,
+    },
+    {
+      id: 2,
+      url: `https://picsum.photos/400/400`,
+    },
+  ];
   return (
     <>
       <Head>
@@ -76,7 +86,7 @@ function DiaryDetail() {
               <Card width="xs" m="0 auto" px={4} py={2}>
                 <Flex>
                   <Image
-                    src="https://picsum.photos/50"
+                    src={data?.alcholType ? iconImageUrl(data?.alcholType) : ""}
                     p={4}
                     alt="alchol"
                     loading="lazy"
@@ -104,8 +114,8 @@ function DiaryDetail() {
                   {data?.thought}
                 </Text>
               </Box>
-              <Box>
-                <ImageSlider images={data?.images} />
+              <Box width="sm" m="0 auto">
+                <ImageSlider images={testImages} />
               </Box>
             </>
           )}
