@@ -1,16 +1,10 @@
 import { Box, Grid, Heading, Spacer } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
-interface HeaderProps {
-  // ...
-}
-
-const userInfo = {};
-
-export default function Header({}: HeaderProps) {
+export default function Header() {
   const router = useRouter();
   const backHome = () => {
-    router.push("/");
+    router.push("/diary");
   };
   return (
     <Box as="header" mb="4" bgColor="#fff">
