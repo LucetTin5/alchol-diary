@@ -40,7 +40,7 @@ function Diary() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container>
+      <Container backgroundColor="#fff">
         <Header />
         <Flex justify="flex-end" pr="15%">
           <Menu isLazy>
