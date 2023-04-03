@@ -1,16 +1,10 @@
 import Background from "@/components/Layout/Background";
 import Container from "@/components/Layout/Container";
 import LoginButton from "@/components/common/LoginButton";
-import { saveStorage } from "@/lib/storage";
 import { Box } from "@chakra-ui/react";
 import Head from "next/head";
-import { useEffect } from "react";
 
 export default function Home() {
-  useEffect(() => {
-    const token = process.env.NEXT_PUBLIC_TOKEN ?? "";
-    saveStorage("token", token);
-  }, []);
   return (
     <>
       <Head>
@@ -21,7 +15,7 @@ export default function Home() {
       </Head>
       <Container>
         <Background color="#000" />
-        <Box></Box>
+        <Box />
         <LoginButton />
       </Container>
     </>
