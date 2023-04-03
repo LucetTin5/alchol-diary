@@ -1,12 +1,9 @@
 import { KAKAO_AUTH_URI } from "@/lib/kakao";
 import { Box, Button, Flex, Image, Link, Text } from "@chakra-ui/react";
-import { useRouter } from "next/router";
 
 export default function LoginButton() {
-  const router = useRouter();
   const handleLogin = () => {
-    // location.href = KAKAO_AUTH_URI; // 카카오 로그인 페이지로 이동
-    router.push("/diary");
+    location.href = KAKAO_AUTH_URI; // 카카오 로그인 페이지로 이동
   };
   return (
     <Box
