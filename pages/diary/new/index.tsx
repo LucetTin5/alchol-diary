@@ -41,6 +41,31 @@ function NewDiary() {
       thought,
       uploadImages,
     } = data;
+    let images;
+    if (uploadImages) {
+      const formData = new FormData();
+      uploadImages.forEach((image) => {
+        formData.append("images", image);
+      });
+      const {
+        data,
+      }: {
+        data: {
+          data: {
+            images: {
+              url: string;
+            }[];
+          };
+        };
+      } = await axiosInstance.post("/upload", formData, {
+        headers: {
+          Authorization: `Bearer ${getFromStorage("token")}`,
+          Content_Type: "multipart/form-data",
+        },
+      });
+      images = data.data.images;
+    }
+    const imagesUrl = images?.map((image) => image.url);
     const newDiaryResponse = await axiosInstance.post(
       "/diary",
       {
@@ -52,6 +77,7 @@ function NewDiary() {
         why,
         food,
         thought,
+        imagesUrl: imagesUrl ?? [],
       },
       {
         headers: {
@@ -59,18 +85,7 @@ function NewDiary() {
         },
       }
     );
-    console.log(newDiaryResponse);
-    if (uploadImages !== undefined) {
-      const uploadFormData = new FormData();
-      for (let i = 0; i < uploadImages.length; i++) {
-        uploadFormData.append("files", uploadImages[i]);
-      }
-      const uploadResponse = await axiosInstance.post("/upload", {
-        body: uploadFormData,
-      });
-      console.log(uploadResponse);
-    }
-    if (newDiaryResponse.status === 200) {
+    if (newDiaryResponse) {
       router.push("/diary");
     }
   };

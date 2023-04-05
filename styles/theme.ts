@@ -49,6 +49,9 @@ const theme = extendTheme({
     national: {
       base: "#7661AE",
     },
+    whiskey: {
+      base: "#CC8E69",
+    },
   },
 });
 

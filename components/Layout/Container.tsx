@@ -8,7 +8,7 @@ export default function Container({
   children: React.ReactNode;
 }) {
   const bgColor = useBreakpointValue({
-    base: backgroundColor ?? "grape.start",
+    base: backgroundColor ?? "#fff",
   });
   return (
     <>
