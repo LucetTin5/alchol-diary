@@ -1,4 +1,3 @@
-import Background from "@/components/Layout/Background";
 import Container from "@/components/Layout/Container";
 import LoginButton from "@/components/common/LoginButton";
 import { Box } from "@chakra-ui/react";
@@ -13,8 +12,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container>
-        <Background color="#000" />
+      <Container backgroundColor="#000">
         <Box />
         <LoginButton />
       </Container>
