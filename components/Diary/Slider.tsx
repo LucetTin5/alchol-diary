@@ -18,11 +18,11 @@ export default function ImageSlider({ images }: ImageSliderProps) {
           <Image
             src={url}
             alt={`Slide ${id}`}
-            width="300"
+            maxW="300"
             height="300"
             m="0 auto"
             borderRadius={10}
-            objectFit="cover"
+            objectFit="contain"
           />
         </SwiperSlide>
       ))}

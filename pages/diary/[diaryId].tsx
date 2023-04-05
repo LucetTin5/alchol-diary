@@ -28,16 +28,6 @@ function DiaryDetail() {
   const { diaryId } = router.query;
   const { data, isLoading } = useDiaryDetail(Number(diaryId));
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const testImages = [
-    {
-      id: 1,
-      url: `https://picsum.photos/300/300`,
-    },
-    {
-      id: 2,
-      url: `https://picsum.photos/400/400`,
-    },
-  ];
   return (
     <>
       <Head>
@@ -115,7 +105,7 @@ function DiaryDetail() {
                 </Text>
               </Box>
               <Box width="sm" m="0 auto">
-                <ImageSlider images={testImages} />
+                <ImageSlider images={data?.images ?? []} />
               </Box>
             </>
           )}

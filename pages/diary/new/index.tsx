@@ -51,10 +51,11 @@ function NewDiary() {
         data,
       }: {
         data: {
-          images: {
-            id: string;
-            url: string;
-          }[];
+          data: {
+            images: {
+              url: string;
+            }[];
+          };
         };
       } = await axiosInstance.post("/upload", formData, {
         headers: {
@@ -62,7 +63,7 @@ function NewDiary() {
           Content_Type: "multipart/form-data",
         },
       });
-      images = data.images;
+      images = data.data.images;
     }
     const imagesUrl = images?.map((image) => image.url);
     const newDiaryResponse = await axiosInstance.post(
@@ -76,7 +77,7 @@ function NewDiary() {
         why,
         food,
         thought,
-        imagesUrl: imagesUrl ? imagesUrl : [],
+        imagesUrl: imagesUrl ?? [],
       },
       {
         headers: {

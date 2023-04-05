@@ -22,7 +22,7 @@ export default function DeleteModal({ isOpen, onClose }: DeleteModalProps) {
   const router = useRouter();
   const { diaryId } = router.query;
   const deleteDiary = () => {
-    const url = `http://localhost:3001/diary/${diaryId}`;
+    const url = `/diary/${diaryId}`;
     axiosInstance
       .delete(url, {
         headers: {
@@ -30,7 +30,7 @@ export default function DeleteModal({ isOpen, onClose }: DeleteModalProps) {
         },
       })
       .then(() => {
-        router.push("/diary");
+        router.replace("/diary");
       });
   };
   const cancelRef = useRef(null);
