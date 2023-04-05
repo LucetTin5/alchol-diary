@@ -41,37 +41,52 @@ function NewDiary() {
       thought,
       uploadImages,
     } = data;
+    let images;
     if (uploadImages) {
       const formData = new FormData();
       uploadImages.forEach((image) => {
         formData.append("images", image);
       });
-      const uploadResponse = await axiosInstance.post("/upload", formData, {
+      const {
+        data,
+      }: {
+        data: {
+          images: {
+            id: string;
+            url: string;
+          }[];
+        };
+      } = await axiosInstance.post("/upload", formData, {
         headers: {
           Authorization: `Bearer ${getFromStorage("token")}`,
           Content_Type: "multipart/form-data",
         },
       });
-      console.log(uploadResponse);
+      images = data.images;
     }
-    // const newDiaryResponse = await axiosInstance.post(
-    //   "/diary",
-    //   {
-    //     alcholType,
-    //     amount,
-    //     amountType,
-    //     withWhom,
-    //     where,
-    //     why,
-    //     food,
-    //     thought,
-    //   },
-    //   {
-    //     headers: {
-    //       Authorization: `Bearer ${getFromStorage("token")}`,
-    //     },
-    //   }
-    // );
+    const imagesUrl = images?.map((image) => image.url);
+    const newDiaryResponse = await axiosInstance.post(
+      "/diary",
+      {
+        alcholType,
+        amount,
+        amountType,
+        withWhom,
+        where,
+        why,
+        food,
+        thought,
+        imagesUrl: imagesUrl ? imagesUrl : [],
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${getFromStorage("token")}`,
+        },
+      }
+    );
+    if (newDiaryResponse) {
+      router.push("/diary");
+    }
   };
   return (
     <>
