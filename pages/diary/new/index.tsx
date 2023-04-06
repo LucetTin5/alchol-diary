@@ -102,7 +102,7 @@ function NewDiary() {
           content="술과 함께한 날의 생각을 기록하는 나만의 다이어리"
         />
         <meta property="og:image" content="/og/og.png" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <Container>
         <Header />
