@@ -59,7 +59,11 @@ export default function StepOne({ handleNext }: StepOneProps) {
                 >
                   {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "직접 입력"].map(
                     (option) => (
-                      <option key={option} value={option}>
+                      <option
+                        key={option}
+                        value={option}
+                        style={{ color: "#000" }}
+                      >
                         {option}
                       </option>
                     )
@@ -76,7 +80,11 @@ export default function StepOne({ handleNext }: StepOneProps) {
                   color="#fff"
                 >
                   {["잔", "병", "ml", "직접 입력"].map((option) => (
-                    <option key={option} value={option}>
+                    <option
+                      key={option}
+                      value={option}
+                      style={{ color: "#000" }}
+                    >
                       {option}
                     </option>
                   ))}
