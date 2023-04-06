@@ -50,7 +50,7 @@ const theme = extendTheme({
       base: "#7661AE",
     },
     whiskey: {
-      base: "#CC8E69",
+      base: "#E59721",
     },
   },
 });
