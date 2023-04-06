@@ -12,8 +12,8 @@ export default function KakaoLogin() {
       axiosInstance.get(url).then((res) => {
         const { user, accessToken } = res.data;
         saveStorage("token", accessToken);
-        saveStorage("user", user);
-        if (getFromStorage("token")) {
+        saveStorage("user", JSON.stringify(user));
+        if (getFromStorage("token") !== "undefined") {
           router.push("/diary");
         }
       });
