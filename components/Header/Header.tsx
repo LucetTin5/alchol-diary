@@ -1,9 +1,11 @@
+import useUser from "@/hooks/useUser";
 import { Box, Flex, Grid, Heading, Icon, Spacer, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { BiUserCircle } from "react-icons/bi";
 
 export default function Header({ bgColor = "#fff" }) {
   const router = useRouter();
+  const user = useUser();
   const backHome = () => {
     router.push("/diary");
   };
@@ -30,7 +32,7 @@ export default function Header({ bgColor = "#fff" }) {
         <Flex align="center">
           <BiUserCircle />
           <Text fontSize="sm" fontWeight="bold" ml="1">
-            스피릿로그 님
+            {user?.name}
           </Text>
         </Flex>
       </Grid>
