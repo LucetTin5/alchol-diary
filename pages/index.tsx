@@ -4,6 +4,7 @@ import { Box } from "@chakra-ui/react";
 import Head from "next/head";
 
 export default function Home() {
+  console.log(process.env.NEXT_PUBLIC_VERCEL_URL);
   return (
     <>
       <Head>
