@@ -1,8 +1,9 @@
 import Container from "@/components/Layout/Container";
 import LoginButton from "@/components/common/LoginButton";
-import { Box, Heading, Image } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import Head from "next/head";
 import styled from "@emotion/styled";
+import CharkaNextImage from "@/components/common/ChakraNextImage";
 
 export default function Home() {
   return (
@@ -19,7 +20,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <Container backgroundColor="#000">
-        <Image
+        <CharkaNextImage
           src="/landing.png"
           alt="SpiritLog Landing Image"
           sx={{

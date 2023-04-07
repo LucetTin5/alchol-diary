@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
-import { Image } from "@chakra-ui/react";
+import CharkaNextImage from "../common/ChakraNextImage";
 
 interface ImageSliderProps {
   images?: {
@@ -15,7 +15,7 @@ export default function ImageSlider({ images }: ImageSliderProps) {
     <Swiper modules={[Navigation]} slidesPerView={1} navigation>
       {images?.map(({ id, url }) => (
         <SwiperSlide key={id}>
-          <Image
+          <CharkaNextImage
             src={url}
             alt={`Slide ${id}`}
             maxW="300"

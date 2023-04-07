@@ -1,5 +1,6 @@
-import { Box, IconButton, Image } from "@chakra-ui/react";
+import { Box, IconButton } from "@chakra-ui/react";
 import { BiXCircle } from "react-icons/bi";
+import CharkaNextImage from "../common/ChakraNextImage";
 
 interface ImagePreviewProps {
   image: File;
@@ -24,7 +25,7 @@ export default function ImagePreview({
         aria-label="delete"
         icon={<BiXCircle />}
       />
-      <Image
+      <CharkaNextImage
         src={URL.createObjectURL(image)}
         alt="preview"
         width="100%"
