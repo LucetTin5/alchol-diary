@@ -11,7 +11,14 @@ export default function CharkaNextImage(props: CharkaNextImageProps) {
   const { src, alt, ...rest } = props;
   return (
     <Box position="relative" {...rest}>
-      <Image src={src} alt={alt} />
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        style={{
+          objectFit: "cover",
+        }}
+      />
     </Box>
   );
 }
