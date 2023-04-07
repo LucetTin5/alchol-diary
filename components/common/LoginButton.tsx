@@ -1,5 +1,6 @@
 import { KAKAO_AUTH_URI } from "@/lib/kakao";
-import { Box, Button, Flex, Image, Link, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Link, Text } from "@chakra-ui/react";
+import CharkaNextImage from "./ChakraNextImage";
 
 export default function LoginButton() {
   const handleLogin = () => {
@@ -23,7 +24,7 @@ export default function LoginButton() {
         onClick={handleLogin}
         _hover={{ backgroundColor: "transparent" }}
       >
-        <Image
+        <CharkaNextImage
           src="/kakao_login_large_narrow.png"
           alt="카카오 로그인"
           height="100%"
