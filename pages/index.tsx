@@ -23,11 +23,10 @@ export default function Home() {
         <CharkaNextImage
           src="/landing.png"
           alt="SpiritLog Landing Image"
-          sx={{
-            maxHeight: "100vh",
-            objectFit: "fill",
-            margin: "0 auto",
-          }}
+          width="80%"
+          minHeight="100vh"
+          margin="0 auto"
+          priority={true}
         />
         <HeadingContainer>
           <Heading

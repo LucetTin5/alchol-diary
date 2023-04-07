@@ -19,7 +19,7 @@ export default function LoginButton() {
       <Button
         borderRadius={12}
         variant="ghost"
-        width="max-content"
+        width="2xs"
         mb={3}
         onClick={handleLogin}
         _hover={{ backgroundColor: "transparent" }}
@@ -28,7 +28,9 @@ export default function LoginButton() {
           src="/kakao_login_large_narrow.png"
           alt="카카오 로그인"
           height="100%"
+          width="100%"
           transform="scale(1.2)"
+          borderRadius={12}
           _hover={{ opacity: 0.8 }}
         />
       </Button>
