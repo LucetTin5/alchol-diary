@@ -12,6 +12,7 @@ import { useFormContext } from "react-hook-form";
 import { Alchols, withWhomArray, whereArray } from "@/lib/constants";
 import ButtonGroup from "./ButtonGroup";
 import { DiaryItem } from "@/types/diary";
+import { useEffect, useState } from "react";
 
 interface StepOneProps {
   handleNext: () => void;
@@ -19,11 +20,25 @@ interface StepOneProps {
 
 export default function StepOne({ handleNext }: StepOneProps) {
   const { register, setValue, watch } = useFormContext<DiaryItem>();
+  const [isCustomAmount, setIsCustomAmount] = useState(false);
+  const [isCustomAmountType, setIsCustomAmountType] = useState(false);
   const alcholType = watch("alcholType");
   const withWhom = watch("withWhom");
   const where = watch("where");
   const amount = watch("amount");
   const amountType = watch("amountType");
+
+  useEffect(() => {
+    if (amount === "직접 입력") {
+      setIsCustomAmount(true);
+    }
+  }, [amount]);
+  useEffect(() => {
+    if (amountType === "직접 입력") {
+      setIsCustomAmountType(true);
+    }
+  }, [amountType]);
+
   return (
     <Box>
       <VStack spacing={4}>
@@ -49,8 +64,18 @@ export default function StepOne({ handleNext }: StepOneProps) {
             >
               얼마나 마셨나요? <span style={{ color: "red" }}>*</span>
             </FormLabel>
-            <Box width="sm" m="0 auto" display="flex" ml={3}>
-              {amount !== "직접 입력" ? (
+            <Box
+              width="sm"
+              m="0 auto"
+              display="flex"
+              ml={3}
+              justifyContent={
+                isCustomAmount || isCustomAmountType
+                  ? "space-between"
+                  : "flex-start"
+              }
+            >
+              {!isCustomAmount ? (
                 <Select
                   {...register("amount")}
                   width="20%"
@@ -72,7 +97,7 @@ export default function StepOne({ handleNext }: StepOneProps) {
               ) : (
                 <Input {...register("amount")} width="40%" />
               )}
-              {amountType !== "직접 입력" ? (
+              {!isCustomAmountType ? (
                 <Select
                   {...register("amountType")}
                   width="20%"

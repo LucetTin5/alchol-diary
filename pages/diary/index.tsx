@@ -20,8 +20,10 @@ import NewDiaryButton from "@/components/common/NewDiary";
 import useDiary from "@/hooks/useDiary";
 import { withAuth } from "@/lib/withAuth";
 import useUser from "@/hooks/useUser";
+import { useRouter } from "next/router";
 
 function Diary() {
+  const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [order, setOrder] = useState<"asc" | "desc">("asc");
   const user = useUser();
@@ -32,8 +34,12 @@ function Diary() {
     onOpen();
   };
   useEffect(() => {
-    refetch();
-  }, [order, refetch]);
+    refetch().then(() => {
+      if (diaries?.length === 0) {
+        router.push("/diary/new");
+      }
+    });
+  }, [order, refetch, diaries, router]);
   return (
     <>
       <Head>
@@ -47,7 +53,7 @@ function Diary() {
         <meta property="og:image" content="/og/og.png" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <Container backgroundColor="#fff">
+      <Container>
         <Header />
         <Flex justify="flex-end" pr="15%">
           <Menu isLazy>

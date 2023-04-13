@@ -8,7 +8,7 @@ export default function Container({
   children: React.ReactNode;
 }) {
   const bgColor = useBreakpointValue({
-    base: backgroundColor ?? "#fff",
+    base: backgroundColor ?? "#f2f2f2",
   });
   return (
     <>
@@ -19,7 +19,6 @@ export default function Container({
         bgColor={bgColor}
         as="main"
         position="relative"
-        z-index="-10"
       >
         {children}
       </Box>

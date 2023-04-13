@@ -68,14 +68,21 @@ export default function ButtonGroup({
               m={5}
               p={1}
               flexDir="column"
+              color={
+                !imgSrc && value === option
+                  ? "#fff"
+                  : imgSrc && value === option
+                  ? "grape.start"
+                  : "#888"
+              }
             >
-              {imgSrc ? <Image src={imgSrc} alt="example" /> : null}
+              {imgSrc && <Image src={imgSrc} alt="example" mb={1} />}
               {option}
             </Button>
           );
         })}
       </Box>
-      <Input value={value} {...register(name)} hidden />
+      <Input {...register(name)} hidden />
     </FormControl>
   );
 }

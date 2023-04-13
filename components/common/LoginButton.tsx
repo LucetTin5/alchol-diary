@@ -19,7 +19,8 @@ export default function LoginButton() {
       <Button
         borderRadius={12}
         variant="ghost"
-        width="2xs"
+        width={320}
+        height={50}
         mb={3}
         onClick={handleLogin}
         _hover={{ backgroundColor: "transparent" }}
@@ -27,11 +28,10 @@ export default function LoginButton() {
         <CharkaNextImage
           src="/kakao_login_large_narrow.png"
           alt="카카오 로그인"
-          height="100%"
           width="100%"
-          transform="scale(1.2)"
+          height="100%"
           borderRadius={12}
-          _hover={{ opacity: 0.8 }}
+          _hover={{ opacity: 0.9 }}
         />
       </Button>
       <Flex direction="column" height="100%" color="#50565B">

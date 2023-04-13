@@ -2,9 +2,9 @@ import StepOne from "@/components/Diary/NewDiaryStepOne";
 import StepTwo from "@/components/Diary/NewDiaryStepTwo";
 import Header from "@/components/Header/Header";
 import Container from "@/components/Layout/Container";
-import { Box, Progress } from "@chakra-ui/react";
+import { Box, IconButton, Progress, ToastId, useToast } from "@chakra-ui/react";
 import Head from "next/head";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { DiaryItem } from "@/types/diary";
 import { withAuth } from "@/lib/withAuth";
@@ -12,24 +12,68 @@ import axiosInstance from "@/lib/axios";
 import { getFromStorage } from "@/lib/storage";
 import { useRouter } from "next/router";
 import useUser from "@/hooks/useUser";
+import { BiX } from "react-icons/bi";
 
 function NewDiary() {
   const router = useRouter();
   const [step, setStep] = useState<1 | 2>(1);
+  const toast = useToast();
+  const toastId = "is-dirty-toast";
+  const toastRef = useRef<ToastId | null>(null);
+  const close = () => {
+    if (toastRef.current) {
+      toast.close(toastRef.current);
+    }
+  };
   const methods = useForm<DiaryItem>({
     defaultValues: {
       alcholType: "소주",
-      amount: 1,
+      amount: 0,
       amountType: "잔",
       withWhom: "혼술",
       where: "집",
       date: String(new Date()).slice(4, 15),
     },
   });
+  const { isDirty } = methods.formState;
   const user = useUser();
   const { handleSubmit } = methods;
   const handleNext = () => {
-    setStep(2);
+    if (!isDirty) {
+      if (!toast.isActive(toastId)) {
+        toastRef.current = toast({
+          id: toastId,
+          position: "bottom",
+          status: "error",
+          isClosable: true,
+          render: () => (
+            <Box
+              color="white"
+              p={3}
+              bg="red.500"
+              borderRadius={12}
+              textAlign="center"
+            >
+              아무것도 입력하지 않았습니다
+              <IconButton
+                onClick={() => close()}
+                aria-label="close"
+                icon={<BiX />}
+                bgColor="transparent"
+                p={0}
+                m={0}
+                _hover={{ bgColor: "transparent" }}
+              />
+            </Box>
+          ),
+        });
+      }
+      return;
+    } else {
+      if (confirm("다음으로 진행하시겠습니까?")) {
+        setStep(2);
+      }
+    }
   };
   const onSubmit = async (data: DiaryItem) => {
     const {
@@ -106,7 +150,7 @@ function NewDiary() {
       </Head>
       <Container>
         <Header />
-        <Box width="sm" m="0 auto">
+        <Box width="sm" m="0 auto" mb={6}>
           <Progress
             value={step === 1 ? 50 : 100}
             borderRadius={50}

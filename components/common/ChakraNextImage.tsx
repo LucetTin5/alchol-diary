@@ -15,11 +15,11 @@ export default function CharkaNextImage(props: CharkaNextImageProps) {
       <Image
         src={src}
         alt={alt}
-        priority={priority}
         fill
         sizes="100%"
+        priority={priority}
         style={{
-          objectFit: "cover",
+          objectFit: "contain",
           borderRadius: "inherit",
         }}
       />

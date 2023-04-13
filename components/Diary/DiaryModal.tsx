@@ -13,8 +13,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { BiChevronRight } from "react-icons/bi";
 import { transformDate } from "@/lib/date";
+import { AlcholEng } from "@/lib/constants";
+import { bgImageUrl } from "@/lib/bgImage";
+import ModalBackground from "../common/ModalBackground";
+import { AiOutlineArrowRight } from "react-icons/ai";
 
 interface ItemModalProps {
   diaryItem?: DiaryItem;
@@ -41,28 +44,45 @@ export default function ItemModal({
         motionPreset="slideInBottom"
       >
         <ModalOverlay />
-        <ModalContent
-          bgColor={
-            diaryItem?.alcholType
-              ? getBgColor(diaryItem?.alcholType)
-              : getBgColor("소주")
-          }
-          color="#fff"
-        >
+        <ModalContent height="md" color="#fff" pos="relative" borderRadius={20}>
+          <ModalBackground
+            startColor={
+              diaryItem?.alcholType
+                ? getBgColor(diaryItem?.alcholType)
+                : getBgColor("소주")
+            }
+            endColor="rgba(0, 0, 0, 0.6)"
+            imgUrl={
+              diaryItem?.alcholType
+                ? bgImageUrl(diaryItem?.alcholType)
+                : bgImageUrl("소주")
+            }
+          />
           <ModalHeader>
             <CloseButton onClick={onClose} position="absolute" right="10%" />
-            <Heading pt="2" fontSize="md" textAlign="center">
+            <Text pt="2" fontSize="md" textAlign="center">
               {diaryItem?.createdAt ? transformDate(diaryItem?.createdAt) : ""}
-            </Heading>
+            </Text>
           </ModalHeader>
           <ModalBody>
-            <Text pt="3" fontSize="xl" p={10} textAlign="center">
-              {diaryItem?.alcholType}
-            </Text>
-            <Text pt="2" fontSize="sm" textAlign="center" mb={10}>
+            <Flex direction="column" p={10}>
+              <Heading pt="3" fontSize="md" textAlign="center">
+                {diaryItem?.alcholType}
+              </Heading>
+              <Heading
+                pt="3"
+                fontSize="2xl"
+                textAlign="center"
+                textTransform="capitalize"
+                letterSpacing={1.5}
+              >
+                {AlcholEng[diaryItem?.alcholType || "소주"]}
+              </Heading>
+            </Flex>
+            <Text pt="2" fontSize="sm" textAlign="left" mb={10}>
               {diaryItem?.thought}
             </Text>
-            <Flex justify="flex-end" mb={3}>
+            <Flex justify="flex-end" mb={3} pos="absolute" bottom="0" right="3">
               <Button
                 size="sm"
                 onClick={goToDetail}
@@ -72,7 +92,7 @@ export default function ItemModal({
                   transform: "scale(1.1)",
                 }}
               >
-                자세히 보기 <BiChevronRight />
+                자세히 보기 <AiOutlineArrowRight />
               </Button>
             </Flex>
           </ModalBody>

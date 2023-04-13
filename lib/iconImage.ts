@@ -16,6 +16,8 @@ export const iconImageUrl = (alcholType: AlcholType) => {
       return "/icons/national.png";
     case "칵테일":
       return "/icons/cocktail.png";
+    case "위스키":
+      return "/bgImages/whiskey.svg";
     default:
       return "/icons/soju.png";
   }
@@ -24,7 +26,7 @@ export const iconImageUrl = (alcholType: AlcholType) => {
 export const alcholImageUrl = (alcholType: AlcholType) => {
   switch (alcholType) {
     case "소주":
-      return "/alchols/soju.png";
+      return "/bgImages/soju.svg";
     case "맥주":
       return "/alchols/beer.png";
     case "와인":
@@ -37,7 +39,9 @@ export const alcholImageUrl = (alcholType: AlcholType) => {
       return "/alchols/national.png";
     case "칵테일":
       return "/alchols/cocktail.png";
+    case "위스키":
+      return "/bgImages/whiskey.svg";
     default:
-      return "/alchols/soju.png";
+      return "/bgImages/soju.svg";
   }
 };
